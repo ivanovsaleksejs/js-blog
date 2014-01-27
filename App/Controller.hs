@@ -1,8 +1,8 @@
 module App.Controller where
 
-import Happstack.Lite
-import Text.JSON.Generic
+import Control.Monad.Trans (liftIO)
+import Text.JSON.Generic (encodeJSON)
 
 resultToJSON obj = fmap encodeJSON obj
 
-getResponse f conn = fmap (ok . toResponse) $ (resultToJSON . f) conn
+getJSONResponse f conn = (liftIO . resultToJSON . f) conn
