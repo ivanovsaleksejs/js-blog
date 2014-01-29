@@ -15,7 +15,7 @@ var Ajax = {
 
 var Model = {
     get : function(model) {
-        var r = new Ajax.Request('model/' + model, {
+        var r = new Ajax.Request(document.location.protocol + "\/\/" + document.location.hostname + model, {
             async: false,
             method: "GET",
             callback: function(data){
@@ -85,7 +85,7 @@ var View = {
     },
 
     forge : function(tmpl, data, parentEl) {
-        this.include('templates/' + tmpl, false, function(template) {
+        this.include('/templates/' + tmpl, false, function(template) {
             eval(template);
         });
     }

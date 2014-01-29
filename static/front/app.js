@@ -1,3 +1,3 @@
 window.onload = function() {
-    //var t = View.forge('table.js', Model.get('results.js'), a);
+    var t = View.forge('posts.js', Model.get('/posts'), document.body);
 }
