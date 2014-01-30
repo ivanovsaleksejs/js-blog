@@ -4,7 +4,6 @@ var posts = create({
 }).appendTo(parentEl || document.body);
 
 for (var r in data) {
-    console.log(data[r].header);
     create({
         tag : 'div',
         className : 'post',
@@ -12,12 +11,28 @@ for (var r in data) {
             {
                 tag : 'h2',
                 className : 'post-header',
-                innerHTML : data[r].header
+                child: [
+                    {
+                        tag: 'a',
+                        href: "/post/" + data[r].id,
+                        innerHTML : data[r].header
+                    }
+                ]
             },
             {
                 tag : 'div',
-                className : 'post-content',
-                innerHTML : data[r].content
+                className : 'post-preview',
+                child: [
+                    {
+                        tag: 'p',
+                        innerHTML: data[r].preview
+                    },
+                    {
+                        tag: 'a',
+                        href: "/post/" + data[r].id,
+                        innerHTML: "Read more..."
+                    }
+                ]
             }
         ]
     }).appendTo(posts);

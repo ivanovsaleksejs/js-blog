@@ -1,0 +1,10 @@
+.headerElement, .contentElement {
+    width:960px;
+    text-align: left;
+}
+.headerElement {
+    height: 50px;    
+}
+a {
+    text-decoration: none;
+}
