@@ -10,7 +10,7 @@ dbGet  c  = query_ c
 
 dbGetP c  = query  c
 
-dbAdd  c p = execute c insertComment p
+dbExec c q p = execute c q p
 
 selectPosts :: Query
 selectPosts = "\
@@ -30,4 +30,7 @@ selectComments :: Query
 selectComments = "select post,comment,user,u.name, DATE_FORMAT(date, '%d %m %Y') from comments join users u on user = u.id where comments.post = ? order by date"
 
 insertComment :: Query
-insertComment = "insert into comments (post, comment, user, DATE_FORMAT(date, '%d %m %Y')) values (?, ?, ?, now())"
+insertComment = "insert into comments (post, comment, user, date) values (?, ?, ?, now())"
+
+checkUser :: Query
+checkUser = "select id, name from users where login = ? and password = ?"
