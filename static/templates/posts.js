@@ -1,7 +1,9 @@
+parentEl.innerHTML = ''
+
 var posts = create({
         tag : 'div',
         className : 'posts'
-}).appendTo(parentEl || document.body);
+}).appendTo(parentEl || document.body)
 
 for (var r in data) {
     create({
@@ -35,5 +37,5 @@ for (var r in data) {
                 ]
             }
         ]
-    }).appendTo(posts);
+    }).appendTo(posts)
 }
