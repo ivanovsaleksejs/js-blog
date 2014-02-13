@@ -1,38 +1,53 @@
 var Ajax = {
+
+    response : '',
+
     Request : function(url, params) {
         var xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP")
 
         xmlhttp.onreadystatechange=function() {
-            if (xmlhttp.readyState==4 && xmlhttp.status==200)
-                params.callback(xmlhttp.responseText)
+            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                params.callback(xmlhttp.response)
+            }
         }
 
         var nocache = ""
+
         if (typeof params.nocache !== "undefined") {
             var d = new Date
             nocache = "?" + d.getTime() + d.getMilliseconds()
         }
+
         xmlhttp.open(params.method, url + nocache, params.async)
         xmlhttp.setRequestHeader("X-Requested-With","XMLHttpRequest")
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded")
         xmlhttp.send(params.data)
         return xmlhttp
-    }
+    },
 }
 
 var Model = {
+
     get : function(model) {
+
         var r = new Ajax.Request(document.location.protocol + "\/\/" + document.location.hostname + model, {
             async: false,
             nocache: true,
             method: "GET",
             data: "",
             callback: function(data){
-                return data;
-            }
-        }).responseText
+                return data
+            },
+            type: "json"
+        }).response
+
+        if (r == '' || !this.is_valid_json(r)) {
+            r = JSON.stringify({error:r})
+        }
+
         return JSON.parse(r)
     },
+
     post : function(model, data) {
 
         var r = new Ajax.Request(document.location.protocol + "\/\/" + document.location.hostname + model, {
@@ -41,17 +56,32 @@ var Model = {
             method: "POST",
             data: this.parse_data(data),
             callback: function(data){
-                return data;
-            }
-        }).responseText
+                return data
+            },
+            type: "json"
+        }).response
+
+        if (r == '' || !this.is_valid_json(r)) {
+            r = JSON.stringify({error:r})
+        }
+
         return JSON.parse(r)
     },
+
     parse_data : function(data) {
         var req = []
+
         for (key in data) {
             req.push(key + "=" + data[key])
         }
+
         return req.join("&")
+    },
+
+    is_valid_json : function(response) {
+        return /^[\],:{}\s]*$/.test(response.replace(/\\["\\\/bfnrtu]/g, '@').
+                                    replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+                                    replace(/(?:^|:|,)(?:\s*\[)+/g, ''))
     }
 }
 
@@ -90,7 +120,7 @@ var View = {
             return this
         }
 
-        return newEl;
+        return newEl
     },
 
     parse_string : function(str) {
@@ -100,9 +130,12 @@ var View = {
 
     include: function(script, async, callback){
 
-        var loaded = this.loadedScripts[script]
-        if (typeof loaded !== undefined){
+        var escapedName = script.replace(/[\/\.]/g, '_')
+        var loaded = this.loadedScripts[escapedName]
+
+        if (typeof loaded !== "undefined"){
             callback(loaded)
+            return
         }
 
         var code = new Ajax.Request(script, {
@@ -111,12 +144,13 @@ var View = {
             callback: callback
         })
 
-        this.loadedScripts[script] = code.responseText
+        this.loadedScripts[escapedName] = code.responseText
     },
 
     forge : function(tmpl, data, parentEl) {
-        this.include('/templates/' + tmpl, false, function(template) {
-            eval(template)
+
+        this.include('/templates/' + tmpl, false, function(t){
+            new Function('data', 'parentEl', t)(data, parentEl)
         })
     }
 
