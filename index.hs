@@ -1,6 +1,8 @@
 module Main where
 
 import Happstack.Server (simpleHTTP, nullConf, port)
+import Happstack.Server.ClientSession
+import Web.ClientSession (getDefaultKey)
 
 import App.Connect
 import App.Router
