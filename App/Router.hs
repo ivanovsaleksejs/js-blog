@@ -3,6 +3,7 @@
 module App.Router where
 
 import Control.Monad (msum, guard)
+import Text.JSON.Generic (encodeJSON)
 
 import Happstack.Server
 
@@ -36,8 +37,8 @@ rPost = method POST >> decodeBody postBodyPolicy
 isAjax :: ServerPart ()
 isAjax = guard . (Just "XMLHttpRequest" ==) =<< getHeaderM "X-Requested-With"
 
-fR = fmap toResponse
+fR m f = fmap (toResponse . encodeJSON) . m . f
 
-parsePath f = fR . resultToJSON . path . f
+parsePath f = fR path f
 
-parsePost f = fR . resultToJSON . withData . f 
+parsePost f = fR withData f 
