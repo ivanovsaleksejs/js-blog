@@ -21,7 +21,8 @@ selectPosts = "\
 \           join comments c \
 \               on p.id = c.post \
 \           group by p.id \
-\           order by p.date desc"
+\           order by p.date desc\
+\           limit ?, 20"
 
 selectPost :: Query
 selectPost = "select header,content,u.name, DATE_FORMAT(date, '%d %m %Y') from posts join users u on user = u.id where posts.id = ?"

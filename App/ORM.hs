@@ -25,16 +25,18 @@ data Post = Post {
     }
     deriving (Data, Typeable)
 
-getPosts conn = do
-    posts <- dbGet conn selectPosts
-    return [Post id header preview content user date cc [] | (id,h,p,c,u,d,cc) <- posts,
-                                                             let [header, preview, content, user, date] = map T.unpack [h,p,c,u,d]]
+getPosts conn offset = do
+    posts <- dbGetP conn selectPosts [(offset*20)::Int]
+    return [Post id header preview content user date cc [] | 
+                (id,h,p,c,u,d,cc) <- posts,
+                let [header, preview, content, user, date] = map T.unpack [h,p,c,u,d]]
 
 getPost conn id = do
     post <- dbGetP conn selectPost [id::Int]
     comments <- getComments conn id
-    return $ head [Post id header "" content user date (length comments) comments | (h,c,u,d) <- post,
-                                                                                    let [header, content, user, date] = map T.unpack [h,c,u,d]]
+    return $ head [Post id header "" content user date (length comments) comments | 
+                        (h,c,u,d) <- post,
+                        let [header, content, user, date] = map T.unpack [h,c,u,d]]
 
 -- Comments
 data Comment = Comment {
@@ -71,8 +73,9 @@ addComment conn comment = do
 
 getComments conn id = do
     comments <- dbGetP conn selectComments [id::Int]
-    return [Comment post text user_id user_name date | (post,t,user_id,un, d) <- comments,
-                                                       let [text, user_name, date] = map T.unpack [t,un,d]]
+    return [Comment post text user_id user_name date | 
+                (post,t,user_id,un, d) <- comments,
+                let [text, user_name, date] = map T.unpack [t,un,d]]
 
 data User = User {
         u_id :: Int,

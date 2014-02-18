@@ -3,47 +3,41 @@
 module App.Router where
 
 import Control.Monad (msum, guard)
-import Control.Monad.Trans (liftIO)
-
-import qualified Data.ByteString.Lazy.Char8 as L (pack)
-import Data.Digest.Pure.MD5
 
 import Happstack.Server
 
-import App.ORM
 import App.Connect
 import App.Controller
 
 -- Routing rules
 routes conn = msum [
         isAjax >> msum [
-            dir "login"     $ rLogin conn, 
-            dir "comment"   $ rAddComment conn, 
+            rPost >> msum [
+                dir "login"     $ rLogin conn, 
+                dir "comment"   $ rAddComment conn
+            ],
             dir "posts"     $ rGetPosts conn,
-            dir "post"      $ rgetPost conn
+            dir "post"      $ rGetPost conn
         ],
         serveDirectory DisableBrowsing ["index.html"] "static",
         serveFile (asContentType "text/html") "static/index.html"
     ]
 
 -- Routing items
-rAddComment conn = rPost $ parsePost postComment conn
-rLogin      conn = rPost $ parsePost loginUser conn
-rGetPosts   conn = fR $ getJSONResponse getPosts conn
-rgetPost    conn = path $ fR . getJSONResponse (getPost conn)
+rAddComment = parsePost actionPostComment
+rLogin      = parsePost actionLoginUser
+
+rGetPosts   = parsePath actionGetPosts
+rGetPost    = parsePath actionGetPost
 
 -- Helpers
+rPost = method POST >> decodeBody postBodyPolicy
+
 isAjax :: ServerPart ()
-isAjax = do
-    h <- getHeaderM "X-Requested-With"
-    guard (h == Just "XMLHttpRequest")
+isAjax = guard . (Just "XMLHttpRequest" ==) =<< getHeaderM "X-Requested-With"
 
-fR f = fmap toResponse f
+fR = fmap toResponse
 
-rPost f = method POST >> decodeBody postBodyPolicy >> f
+parsePath f = fR . resultToJSON . path . f
 
-parsePost f conn = fR . resultToJSON . withData $ f conn 
-
-postComment conn comment = liftIO $ addComment conn (comment :: Comment) 
-
-loginUser conn user = liftIO $ checkUserLogin conn (user :: User)
+parsePost f = fR . resultToJSON . withData . f 
