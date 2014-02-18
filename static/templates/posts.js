@@ -31,6 +31,7 @@ for (var r in data) {
                     },
                     {
                         tag: 'a',
+                        className: "readmore",
                         href: "/post/" + data[r].id,
                         innerHTML: "Read more..."
                     }

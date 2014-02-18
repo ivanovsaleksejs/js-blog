@@ -5,9 +5,10 @@ var contentElement = false
 Posts = {
     posts: false,
     post: false,
-    viewPosts: function(offset) {
+    viewPosts: function() {
+        offset = Router.request_params[2] || 0
         contentElement.innerHTML = ""
-        Posts.posts = View.forge('posts.js', Model.get('/posts'), contentElement)
+        Posts.posts = View.forge('posts.js', Model.get('/posts/'+offset), contentElement)
     },
     viewPost: function() {
         contentElement.innerHTML = ""
@@ -18,15 +19,17 @@ Posts = {
 Router = {
 
     request: false,
+    request_params: [],
     state: {},
 
     rules: [
         {rule: '\/post\/[0-9]+', action: Posts.viewPost},
-        {rule: '\/posts', action: Posts.viewPosts}
+        {rule: '\/posts(\/[0-9]+)?', action: Posts.viewPosts}
     ],
 
     Route: function (e) {
         Router.request = window.location.pathname
+        Router.request_params = Router.request.split('\/')
 
         for (rule in Router.rules) {
             if (RegExp('^'+Router.rules[rule].rule+'$').test(Router.request)) {

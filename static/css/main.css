@@ -1,10 +1,32 @@
+* {
+    color: #3F403D;
+    font-size: 18px;
+}
 .headerElement, .contentElement {
     width:960px;
     text-align: left;
+    background: none repeat scroll 0 0 #ECEFEC;
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    font-family: Arial;
 }
 .headerElement {
-    height: 50px;    
+    height: 50px;
 }
 a {
     text-decoration: none;
+}
+
+h2.post-header a {
+    font-size: 25px;
+    color: #4D4F49;
+    text-decoration: underline;
+    margin-bottom: 7px;
+    font-weight: bold;
+    font-family: Arial;
+}
+.readmore {
+    font-size: 13px;
+    font-style: italic;
 }

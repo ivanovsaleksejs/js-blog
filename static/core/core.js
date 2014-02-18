@@ -1,7 +1,5 @@
 var Ajax = {
 
-    response : '',
-
     Request : function(url, params) {
         var xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP")
 
@@ -15,7 +13,7 @@ var Ajax = {
 
         if (typeof params.nocache !== "undefined") {
             var d = new Date
-            nocache = "?" + d.getTime() + d.getMilliseconds()
+            nocache = "?" + d.getTime() + Math.round(d.getMilliseconds() / 100)
         }
 
         xmlhttp.open(params.method, url + nocache, params.async)
