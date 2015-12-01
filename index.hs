@@ -1,13 +1,11 @@
 module Main where
 
 import Happstack.Server (simpleHTTP, nullConf, port)
-import Happstack.Server.ClientSession
-import Web.ClientSession (getDefaultKey)
 
 import App.Connect
 import App.Router
 
 main = do
     conn <- dbConnect
-    simpleHTTP nullConf {port = 80} $ routes conn
+    simpleHTTP nullConf {port = 3000} $ routes conn
     dbClose conn

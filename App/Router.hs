@@ -13,10 +13,7 @@ import App.Controller
 -- Routing rules
 routes conn = msum [
         isAjax >> msum [
-            rPost >> msum [
-                dir "login"     $ rLogin conn, 
-                dir "comment"   $ rAddComment conn
-            ],
+            rPost >> msum [],
             dir "posts"     $ rGetPosts conn,
             dir "post"      $ rGetPost conn
         ],
@@ -25,9 +22,6 @@ routes conn = msum [
     ]
 
 -- Routing items
-rAddComment = parsePost actionPostComment
-rLogin      = parsePost actionLoginUser
-
 rGetPosts   = parsePath actionGetPosts
 rGetPost    = parsePath actionGetPost
 

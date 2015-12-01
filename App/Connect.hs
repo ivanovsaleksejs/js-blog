@@ -12,6 +12,6 @@ dbConfig = defaultConnectInfo {
 
 dbConnect = connect dbConfig
 
-dbClose c = close c
+dbClose = close
 
 postBodyPolicy = defaultBodyPolicy "/tmp/" 0 10000 1000

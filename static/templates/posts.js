@@ -1,39 +1,34 @@
-parentEl.innerHTML = ''
+parentEl.innerHTML = ""
 
 var posts = create({
-        tag : 'div',
-        className : 'posts'
+        tag : "div",
+        className : "posts"
 }).appendTo(parentEl || document.body)
 
 for (var r in data) {
     create({
-        tag : 'div',
-        className : 'post',
+        tag : "div",
+        className : "post",
         child : [
             {
-                tag : 'h2',
-                className : 'post-header',
+                tag : "h2",
+                className : "post-header",
                 child: [
                     {
-                        tag: 'a',
-                        href: "/post/" + data[r].id,
+                        tag: "a",
+                        href: "/post/" + data[r].url,
                         innerHTML : data[r].header
                     }
                 ]
             },
             {
-                tag : 'div',
-                className : 'post-preview',
+                tag : "div",
+                className : "post-preview",
                 child: [
                     {
-                        tag: 'p',
+                        tag: "a",
+                        href: "/post/" + data[r].url,
                         innerHTML: data[r].preview
-                    },
-                    {
-                        tag: 'a',
-                        className: "readmore",
-                        href: "/post/" + data[r].id,
-                        innerHTML: "Read more..."
                     }
                 ]
             }

@@ -1,32 +1,54 @@
 * {
-    color: #3F403D;
+    color: #334455;
     font-size: 18px;
+    font-family: 'Droid Sans', sans-serif !important;
+    font-weight: 400;
 }
 .headerElement, .contentElement {
-    width:960px;
     text-align: left;
-    background: none repeat scroll 0 0 #ECEFEC;
-    margin: 0;
-    padding: 0;
-    border: 0 none;
-    font-family: Arial;
+    background: none repeat scroll 0 0 #faf9fa;
+    margin: 0 4em;
+    padding: 0 2em;
+    border: 0.1em solid #334455;
+    border-top: 0 none;
+    border-bottom: 0 none;
 }
 .headerElement {
-    height: 50px;
+    height: 3em;
 }
 a {
     text-decoration: none;
 }
+.contentElement {
+    padding: 2em;
+}
+div.post {
+    margin-top: 3em;    
+}
+h2.post-header {
+    margin-bottom: 0.5em;
+}
 
-h2.post-header a {
-    font-size: 25px;
+.post-header {
+    font-size: 3em;
     color: #4D4F49;
-    text-decoration: underline;
-    margin-bottom: 7px;
-    font-weight: bold;
-    font-family: Arial;
+    text-decoration: none;
+    font-weight: 100;
+}
+.post-preview p {
+    font-size: 1.5em;    
 }
 .readmore {
-    font-size: 13px;
+    font-size: 0.8em;
     font-style: italic;
+}
+.content {
+    font-size: 1.2em;
+    letter-spacing: 0.03em;
+    line-height: 1.4em;
+}
+.author {
+    font-size: 0.8em;
+    font-style: italic;
+    margin: 1em 0;    
 }

@@ -24,6 +24,33 @@ var Ajax = {
     },
 }
 
+var Router = {
+
+    request: false,
+    request_params: [],
+    state: {},
+
+    rules: [],
+
+    Route: function (e) {
+        Router.request = window.location.pathname
+        Router.request_params = Router.request.split("\/")
+
+        for (rule in Router.rules) {
+            if (RegExp("^"+Router.rules[rule].rule+"$").test(Router.request)) {
+                break
+            }
+        }
+        Router.rules[rule].action()
+    }
+}
+
+var NotFound = {
+    display: function (tpl) {
+        View.forge(tpl || "404.js", {}, contentElement)
+    }
+}
+
 var Model = {
 
     get : function(model) {
@@ -39,7 +66,7 @@ var Model = {
             type: "json"
         }).response
 
-        if (r == '' || !this.is_valid_json(r)) {
+        if (r == "" || !this.is_valid_json(r)) {
             r = JSON.stringify({error:r})
         }
 
@@ -59,7 +86,7 @@ var Model = {
             type: "json"
         }).response
 
-        if (r == '' || !this.is_valid_json(r)) {
+        if (r == "" || !this.is_valid_json(r)) {
             r = JSON.stringify({error:r})
         }
 
@@ -77,21 +104,21 @@ var Model = {
     },
 
     is_valid_json : function(response) {
-        return /^[\],:{}\s]*$/.test(response.replace(/\\["\\\/bfnrtu]/g, '@').
-                                    replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-                                    replace(/(?:^|:|,)(?:\s*\[)+/g, ''))
+        return /^[\],:{}\s]*$/.test(response.replace(/\\["\\\/bfnrtu]/g, "@").
+                                    replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, "]").
+                                    replace(/(?:^|:|,)(?:\s*\[)+/g, ""))
     }
 }
 
 var View = {
 
     tags        : [],
-    events      : ['click', 'mouseover', 'mouseup'],
+    events      : ["click", "mouseover", "mouseup"],
     attributes  : [],
     loadedScripts: [],
 
     create : function(el) {
-        return this.create_element(typeof el == 'string' ? this.parse_string(el) : el)
+        return this.create_element(typeof el == "string" ? this.parse_string(el) : el)
     },
 
     create_element : function(el) {
@@ -99,7 +126,7 @@ var View = {
 
         delete el.tag
 
-        if (typeof el.child != 'undefined') {
+        if (typeof el.child != "undefined") {
             for (var i in el.child) {
                 newEl.appendChild(this.create(el.child[i]))
             }
@@ -122,13 +149,13 @@ var View = {
     },
 
     parse_string : function(str) {
-        var obj = JSON.parse('{' + str.replace(/\=/g, ':').replace(/([a-zA-Z0-9_\-]+)/g, '"$1"') + '}')
+        var obj = JSON.parse("{" + str.replace(/\=/g, ":").replace(/([a-zA-Z0-9_\-]+)/g, "\"$1\"") + "}")
         return (obj)
     },
 
     include: function(script, async, callback){
 
-        var escapedName = script.replace(/[\/\.]/g, '_')
+        var escapedName = script.replace(/[\/\.]/g, "_")
         var loaded = this.loadedScripts[escapedName]
 
         if (typeof loaded !== "undefined"){
@@ -147,8 +174,8 @@ var View = {
 
     forge : function(tmpl, data, parentEl) {
 
-        this.include('/templates/' + tmpl, false, function(t){
-            new Function('data', 'parentEl', t)(data, parentEl)
+        this.include("/templates/" + tmpl, false, function(t){
+            new Function("data", "parentEl", t)(data, parentEl)
         })
     }
 
@@ -156,4 +183,14 @@ var View = {
 
 var create = function(param) {
    return View.create(param)
+}
+
+function handleClick(event) {
+    var e = event.target
+    if (e.tagName == "A") {
+        history.pushState(Router.state, "", e.href)
+        Router.Route()
+    }
+    event.preventDefault()
+    return false
 }
