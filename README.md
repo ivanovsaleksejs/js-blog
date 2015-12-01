@@ -16,7 +16,7 @@ To run server:
 
 3) Run cabal init or cabal sandbox init. It's recommended to install a project in a cabal sandbox, because cabal is hell. Then run cabal install.
 
-4a) Compile and run index.hs as root, or
+4a) Compile and run index.hs, or
 
 4b) Launch <pre>runhaskell index.hs</pre>
 
