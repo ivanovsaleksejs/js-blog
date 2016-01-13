@@ -185,7 +185,7 @@ var create = function(param) {
    return View.create(param)
 }
 
-function handleClick(event) {
+var handleClick = function(event) {
     var e = event.target
     if (e.tagName == "A") {
         history.pushState(Router.state, "", e.href)
@@ -193,4 +193,12 @@ function handleClick(event) {
     }
     event.preventDefault()
     return false
+}
+
+var setTitle = function(text) {
+    var title = document.getElementsByTagName('title')
+    if (title.length == 0) {
+        var title = create("tag=title").appendTo(document.head)
+    }
+    title.text = text
 }
