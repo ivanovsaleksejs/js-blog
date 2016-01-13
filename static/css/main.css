@@ -19,6 +19,10 @@
 }
 a {
     text-decoration: none;
+    color: #a17b8a;
+}
+a:hover {
+    color: #c79baa;
 }
 .contentElement {
     padding: 2em;

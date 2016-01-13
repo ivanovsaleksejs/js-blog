@@ -26,7 +26,7 @@ var post = create({
         ]
 }).appendTo(parentEl || document.body);
 
-var disqus_shortname = 'aleksejs'; // required: replace example with your forum shortname
+var disqus_shortname = 'aleksejs'
 
 var disqus_identifier = 'aleksejs_' + data.id
 var disqus_title = data.header
