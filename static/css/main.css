@@ -19,10 +19,6 @@
 }
 a {
     text-decoration: none;
-    color: #a17b8a;
-}
-a:hover {
-    color: #c79baa;
 }
 .contentElement {
     padding: 2em;
@@ -57,11 +53,17 @@ h2.post-header {
     font-style: italic;
     margin: 1em 0;
 }
+.content p a {
+    color: #a17b8a;
+}
+.content p a:hover {
+    color: #c79baa;
+}
 .content p {
     text-align: justify;
 }
 .content pre, span.code {
-    background: #4d403f none repeat scroll 0 0;
+    background: #45403f none repeat scroll 0 0;
     color: #d6e3db;
     font-family: monospace !important;
 }
