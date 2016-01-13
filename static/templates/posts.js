@@ -23,7 +23,7 @@ for (var r in data) {
             },
             {
                 tag : "div",
-                className : "post-preview",
+                className : "post-preview content",
                 child: [
                     {
                         tag: "a",

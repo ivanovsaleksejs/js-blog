@@ -37,7 +37,8 @@ window.onload = function() {
     ])
 
     center = create({
-        tag:"center",
+        tag:"div",
+        className: "wrapper",
         click:handleClick
     }).appendTo(document.body)
 
