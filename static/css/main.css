@@ -6,10 +6,10 @@
 }
 .headerElement, .contentElement {
     text-align: left;
-    background: none repeat scroll 0 0 #faf9fa;
-    margin: 0 4em;
+    background: none repeat scroll 0 0 #fff;
+    margin: 0 7em;
     padding: 0 2em;
-    border: 0.1em solid #334455;
+    border: 0.1em solid #123;
     border-top: 0 none;
     border-bottom: 0 none;
 }
@@ -51,4 +51,31 @@ h2.post-header {
     font-size: 0.8em;
     font-style: italic;
     margin: 1em 0;    
+}
+.content p {
+    text-align: justify;
+}
+.content pre, span.code {
+    background: #1b1a2b none repeat scroll 0 0;
+    color: #b3bcc1;
+    font-family: monospace !important;
+}
+.content pre {
+    border: 1px inset #334455;
+    margin: 0.8em 0;
+    padding: 0.3em 0.1em;
+}
+span.code {
+    padding: 0 0.2em    
+}
+.content .note {
+    border: 1px solid #334455;
+    display: block;
+    font-size: 0.75em;
+    font-style: italic;
+    padding: 1em;
+    width: 82%;
+}
+.content ol {
+    list-style: decimal inside;
 }
