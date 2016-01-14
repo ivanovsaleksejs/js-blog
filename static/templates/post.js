@@ -12,7 +12,7 @@ var post = create({
             {
                 tag: "div",
                 className: "author",
-                innerHTML: data.user + " " + data.date
+                innerHTML: data.user + " " + data.date.replace(/\s/g, '.')
             },
             {
                 tag: "div",

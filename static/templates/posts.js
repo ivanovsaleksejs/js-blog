@@ -22,6 +22,11 @@ for (var r in data) {
                 ]
             },
             {
+                tag: "div",
+                className: "author",
+                innerHTML: data[r].user + " " + data[r].date.replace(/\s/g, '.')
+            },
+            {
                 tag : "div",
                 className : "post-preview content",
                 child: [
