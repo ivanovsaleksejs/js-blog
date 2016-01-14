@@ -4,6 +4,21 @@
     font-family: 'Droid Sans', sans-serif !important;
     font-weight: 400;
 }
+body {
+    height: 100%;
+}
+.wrapper {
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+}
 .headerElement, .contentElement {
     text-align: left;
     background: none repeat scroll 0 0 #fff;
@@ -22,6 +37,13 @@ a {
 }
 .contentElement {
     padding: 2em;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
 }
 div.post {
     margin-top: 3em;

@@ -1,6 +1,7 @@
 var center = false
 var headerElement = false
 var contentElement = false
+var footerElement = false
 
 var Posts = {
     posts: false,
@@ -44,6 +45,7 @@ window.onload = function() {
 
     headerElement = create("tag=div,className=headerElement").appendTo(center)
     contentElement = create("tag=div,className=contentElement").appendTo(center)
+    footerElement = create("tag=div,className=footerElement").appendTo(center)
 
     window.onpopstate = Router.Route
     Router.Route()
