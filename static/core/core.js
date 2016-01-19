@@ -11,7 +11,7 @@ var Ajax = {
 
         var nocache = ""
 
-        if (typeof params.nocache !== "undefined" && nocache) {
+        if (typeof params.nocache !== "undefined" && params.nocache) {
             var d = new Date
             nocache = "?" + d.getTime() + Math.round(d.getMilliseconds() / 100)
         }
