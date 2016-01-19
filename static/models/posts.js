@@ -2,7 +2,7 @@
     {
         "id":3,
         "header":"How this blog works",
-        "preview":"After I launched blog, some people asked me to share an info about how this blog is made, what engine it uses etc. I'm going to write about it in this post.",
+        "preview":"After I launched this blog, some people asked me to share an info about how this blog is made, what library or framework it uses etc. I'm going to write about it in this post.",
         "url":"how_this_blog_works",
         "user":"Aleksejs",
         "date":"19 01 2016"
