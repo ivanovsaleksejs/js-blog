@@ -22,6 +22,10 @@ Router.static_routes = Router.static_routes.concat([
             {
                 name: "ternary_operator_in_haskell",
                 path: "ternary_operator_in_haskell.js"
+            },
+            {
+                name: "how_this_blog_works",
+                path: "how_this_blog_works.js"
             }
         ]
     }

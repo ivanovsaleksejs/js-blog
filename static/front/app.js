@@ -6,7 +6,7 @@ var footerElement = false
 window.onload = function() {
     View.include("/front/controllers.js", false, function(t){
         new Function(t)()
-        View.include('/front/rules.js', false, function(t){
+        View.include("/front/rules.js", false, function(t){
             new Function(t)()
         })
     })
