@@ -30,7 +30,10 @@ var Router = {
     request_params: [],
     state: {},
 
+    is_static: false,
+
     rules: [],
+    static_routes: [],
 
     Route: function (e) {
         Router.request = window.location.pathname
@@ -42,6 +45,21 @@ var Router = {
             }
         }
         Router.rules[rule].action()
+    },
+
+    routeStatic: function (model, routes) {
+        var a = model.split("/").filter(function(s){return s})
+        var path = [a.shift()]
+        path.push(a.join("/"))
+
+        for (route in routes) {
+            if (routes[route].name == path[0]) {
+                if (typeof routes[route].group !== "undefined") {
+                    return this.routeStatic(path[1], routes[route].group)
+                }
+                return "/models/" + routes[route].path
+            }
+        }
     }
 }
 
@@ -54,6 +72,10 @@ var NotFound = {
 var Model = {
 
     get : function(model) {
+
+        if (Router.is_static) {
+            model = Router.routeStatic(model, Router.static_routes)
+        }
 
         var r = new Ajax.Request(document.location.protocol + "\/\/" + document.location.hostname + model, {
             async: false,

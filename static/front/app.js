@@ -7,9 +7,8 @@ var Posts = {
     posts: false,
     post: false,
     viewPosts: function() {
-        offset = Router.request_params[2] || 0
         contentElement.innerHTML = ""
-        Posts.posts = View.forge("posts.js", Model.get("/posts/"+offset), contentElement)
+        Posts.posts = View.forge("posts.js", Model.get("/posts/"), contentElement)
     },
     viewPost: function() {
         contentElement.innerHTML = ""
@@ -26,16 +25,9 @@ var Posts = {
 
 
 window.onload = function() {
-    Router.rules = Router.rules.concat([
-        {
-            rule: "\/post\/.*",
-            action: Posts.viewPost
-        },
-        {
-            rule: "\/posts(\/[0-9]+)?",
-            action: Posts.viewPosts
-        }
-    ])
+    View.include('/front/rules.js', false, function(t){
+        new Function(t)()
+    })
 
     center = create({
         tag:"div",
