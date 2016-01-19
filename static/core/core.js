@@ -60,11 +60,10 @@ var Router = {
                 return "/models/" + routes[route].path
             }
         }
-    }
-}
+        return false
+    },
 
-var NotFound = {
-    display: function (tpl) {
+    notFound: function (tpl) {
         View.forge(tpl || "404.js", {}, contentElement)
     }
 }
@@ -75,6 +74,10 @@ var Model = {
 
         if (Router.is_static) {
             model = Router.routeStatic(model, Router.static_routes)
+            if (!model) {
+                Router.notFound()
+                return
+            }
         }
 
         var r = new Ajax.Request(document.location.protocol + "\/\/" + document.location.hostname + model, {
