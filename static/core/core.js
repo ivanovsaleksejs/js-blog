@@ -11,7 +11,7 @@ var Ajax = {
 
         var nocache = ""
 
-        if (typeof params.nocache !== "undefined") {
+        if (typeof params.nocache !== "undefined" && nocache) {
             var d = new Date
             nocache = "?" + d.getTime() + Math.round(d.getMilliseconds() / 100)
         }
@@ -178,7 +178,7 @@ var View = {
         return (obj)
     },
 
-    include: function(script, async, callback){
+    include: function(script, async, callback, nocache){
 
         var escapedName = script.replace(/[\/\.]/g, "_")
         var loaded = this.loadedScripts[escapedName]
@@ -191,6 +191,7 @@ var View = {
         var code = new Ajax.Request(script, {
             async: async,
             method: "GET",
+            nocache: nocache,
             callback: callback
         })
 

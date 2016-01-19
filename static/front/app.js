@@ -8,7 +8,7 @@ window.onload = function() {
         new Function(t)()
         View.include("/front/rules.js", false, function(t){
             new Function(t)()
-        })
+        }, true)
     })
 
     center = create({
