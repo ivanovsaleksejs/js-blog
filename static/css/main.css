@@ -7,6 +7,10 @@
 body {
     height: 100%;
 }
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
 .wrapper {
     min-height: 100%;
     display: flex;
@@ -102,6 +106,9 @@ span.code {
     font-style: italic;
     padding: 1em;
     width: 82%;
+}
+.content .note.math {
+    font-family: serif !important;
 }
 .content ul {
     list-style: square inside;

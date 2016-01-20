@@ -1,5 +1,13 @@
 [
     {
+        "id":4,
+        "header":"Some thoughts about semiprimes",
+        "preview":"I was thinking about Goldbach conjecture recently, and I came up with slightly different, but related question.",
+        "url":"some_thoughts_about_semiprimes",
+        "user":"Aleksejs",
+        "date":"20 01 2016"
+    },
+    {
         "id":3,
         "header":"How this blog works",
         "preview":"After I launched this blog, some people asked me to share an info about how this blog is made, what library or framework it uses etc. I'm going to write about it in this post.",

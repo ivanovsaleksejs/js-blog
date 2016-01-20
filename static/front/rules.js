@@ -26,6 +26,10 @@ Router.static_routes = Router.static_routes.concat([
             {
                 name: "how_this_blog_works",
                 path: "how_this_blog_works.js"
+            },
+            {
+                name: "some_thoughts_about_semiprimes",
+                path: "some_thoughts_about_semiprimes.js"
             }
         ]
     }
