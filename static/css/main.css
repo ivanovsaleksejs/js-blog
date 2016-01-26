@@ -21,7 +21,6 @@ sup {
 }
 .headerElement, .contentElement {
     text-align: left;
-    background: none repeat scroll 0 0 #fff;
     margin: 0 0 0 7em;
     padding: 0 2em;
     border: 0.1em solid #123;

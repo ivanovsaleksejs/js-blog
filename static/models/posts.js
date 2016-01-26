@@ -1,5 +1,13 @@
 [
     {
+        "id":5,
+        "header":"Ratio of A series paper size",
+        "preview":"A simple proof that A series paper size ratio is the only one that is preserved after folding in half.",
+        "url":"ratio_of_a_series_paper_size",
+        "user":"Aleksejs",
+        "date":"25 01 2016"
+    },
+    {
         "id":4,
         "header":"Some thoughts about semiprimes",
         "preview":"I was thinking about Goldbach conjecture recently, and I came up with slightly different, but related question.",

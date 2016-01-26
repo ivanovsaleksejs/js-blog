@@ -37,6 +37,8 @@ var disqus = create({
     src: "//aleksejs.disqus.com/embed.js",    
 })
 
-disqus.setAttribute('data-timestamp', +new Date())
+disqus.setAttribute('data-timestamp', +new Date());
 
 disqus.appendTo(document.body);
+
+(jsMath[jsMath.Easy.method])()

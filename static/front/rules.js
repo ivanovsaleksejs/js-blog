@@ -30,7 +30,11 @@ Router.static_routes = Router.static_routes.concat([
             {
                 name: "some_thoughts_about_semiprimes",
                 path: "some_thoughts_about_semiprimes.js"
-            }
+            },
+            {
+                name: "ratio_of_a_series_paper_size",
+                path: "ratio_of_a_series_paper_size.js"
+            },
         ]
     }
 ])
