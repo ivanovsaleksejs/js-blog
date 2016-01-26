@@ -3,6 +3,8 @@ var headerElement = false
 var contentElement = false
 var footerElement = false
 
+jsMath.Font.Message = function () {}
+
 window.onload = function() {
     View.include("/front/controllers.js", false, function(t){
         new Function(t)()
