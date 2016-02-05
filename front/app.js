@@ -1,7 +1,10 @@
-var center = false
-var headerElement = false
-var contentElement = false
-var footerElement = false
+var wrapper = false
+
+var page = {
+    header:  false,
+    center: false,
+    footer:  false    
+}
 
 jsMath.Font.Message = function () {}
 
@@ -11,17 +14,17 @@ window.onload = function() {
         View.include("/front/rules.js", false, function(t){
             new Function(t)()
         }, true)
-    })
+    }, true)
 
-    center = create({
+    wrapper = create({
         tag:"div",
         className: "wrapper",
         click:handleClick
     }).appendTo(document.body)
 
-    headerElement = create("tag=div,className=headerElement").appendTo(center)
-    contentElement = create("tag=div,className=contentElement").appendTo(center)
-    footerElement = create("tag=div,className=footerElement").appendTo(center)
+    for (var i in page) {
+        page[i] = create("tag=div,className=" + i).appendTo(wrapper)
+    }
 
     window.onpopstate = Router.Route
     Router.Route()

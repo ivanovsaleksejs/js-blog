@@ -2,14 +2,14 @@ Posts = {
     posts: false,
     post: false,
     viewPosts: function() {
-        contentElement.innerHTML = ""
-        Posts.posts = View.forge("posts.js", Model.get("/posts/"), contentElement)
+        page.center.innerHTML = ""
+        Posts.posts = View.forge("posts.js", Model.get("/posts/"), page.center)
     },
     viewPost: function() {
-        contentElement.innerHTML = ""
+        page.center.innerHTML = ""
         post = Model.get(Router.request)
         if (post.id != 0) {
-            Posts.post = View.forge("post.js", post, contentElement)
+            Posts.post = View.forge("post.js", post, page.center)
         }
         else {
             Router.notFound()
