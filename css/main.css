@@ -11,6 +11,9 @@ sup {
     vertical-align: super;
     font-size: 0.6em;
 }
+a {
+    text-decoration: none;
+}
 .wrapper {
     min-height: 100%;
     display: flex;
@@ -28,11 +31,14 @@ sup {
     border-bottom: 0 none;
     width: 60em;
 }
-.header{
-    height: 3em;
+.header {
+    border-bottom: 1px solid;
+    height: 5em;
+    padding-top: 1.5em;
 }
-a {
-    text-decoration: none;
+.header a {
+    color: #123;
+    font-size:4em;
 }
 .center {
     padding: 2em;

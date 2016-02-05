@@ -3,7 +3,7 @@ var wrapper = false
 var page = {
     header:  false,
     center: false,
-    footer:  false    
+    footer:  false
 }
 
 jsMath.Font.Message = function () {}
@@ -16,6 +16,8 @@ window.onload = function() {
         }, true)
     }, true)
 
+
+
     wrapper = create({
         tag:"div",
         className: "wrapper",
@@ -25,6 +27,12 @@ window.onload = function() {
     for (var i in page) {
         page[i] = create("tag=div,className=" + i).appendTo(wrapper)
     }
+
+    create({
+        tag: "a",
+        href: "/",
+        innerHTML: "Aleksejs Ivanovs"
+    }).appendTo(page.header)
 
     window.onpopstate = Router.Route
     Router.Route()
