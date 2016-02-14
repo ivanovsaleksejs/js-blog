@@ -198,11 +198,11 @@ var View = {
         this.loadedScripts[escapedName] = code.responseText
     },
 
-    forge : function(tmpl, data, parentEl) {
+    forge : function(tmpl, data, parentEl, nocache) {
 
         this.include("/templates/" + tmpl, false, function(t){
             new Function("data", "parentEl", t)(data, parentEl)
-        })
+        }, nocache)
     }
 
 }
@@ -216,9 +216,9 @@ var handleClick = function(event) {
     if (e.tagName == "A") {
         history.pushState(Router.state, "", e.href)
         Router.Route()
+        event.preventDefault()
+        return false
     }
-    event.preventDefault()
-    return false
 }
 
 var setTitle = function(text) {

@@ -1,0 +1,21 @@
+#clock, #checkBox {
+    width: 450px;
+}
+#clock {
+    display: flex;
+    height: 200px;
+}
+#clock div {
+    align-items: center;
+    border: 1px solid #123;
+    color: #123;
+    display: flex;
+    flex-grow: 1;
+    font-family: monospace;
+    font-size: 108px;
+    justify-content: center;
+    width: 150px;
+}
+#checkBox {
+    text-align: center;
+}

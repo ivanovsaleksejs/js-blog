@@ -1,5 +1,13 @@
 [
     {
+        "id":6,
+        "header":"Hexadecimal clock",
+        "preview":"Hexadecimal clock with 16 hours, 64 minutes and 64 seconds.",
+        "url":"hexadecimal_clock",
+        "user":"Aleksejs",
+        "date":"14 02 2016"
+    },
+    {
         "id":5,
         "header":"Ratio of A series paper size",
         "preview":"A simple proof that A series paper size ratio is the only one that is preserved after folding in half.",

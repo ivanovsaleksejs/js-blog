@@ -26,6 +26,21 @@ var post = create({
         ]
 }).appendTo(parentEl || document.body);
 
+if (typeof data.style !== "undefined" && typeof style[data.style] == "undefined") {
+    create({
+        tag: "link",
+        rel: "stylesheet",
+        type: "text/css",
+        href: "/css/" + data.style + ".css"
+    }).appendTo(document.head)
+}
+
+if (typeof data.complete !== "undefined") {
+    View.include("/front/js/" + data.complete + ".js", false, function(t){
+        new Function(t)()
+    }, true)
+}
+
 var disqus_shortname = 'aleksejs'
 
 var disqus_identifier = 'aleksejs_' + data.id

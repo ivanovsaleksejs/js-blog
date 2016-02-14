@@ -1,4 +1,5 @@
 var wrapper = false
+var style = {}
 
 var page = {
     header:  false,

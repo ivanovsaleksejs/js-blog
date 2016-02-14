@@ -9,7 +9,7 @@ Posts = {
         page.center.innerHTML = ""
         post = Model.get(Router.request)
         if (post.id != 0) {
-            Posts.post = View.forge("post.js", post, page.center)
+            Posts.post = View.forge("post.js", post, page.center, true)
         }
         else {
             Router.notFound()

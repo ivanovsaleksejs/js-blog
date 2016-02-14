@@ -35,6 +35,10 @@ Router.static_routes = Router.static_routes.concat([
                 name: "ratio_of_a_series_paper_size",
                 path: "ratio_of_a_series_paper_size.js"
             },
+            {
+                name: "hexadecimal_clock",
+                path: "hexadecimal_clock.js"
+            },
         ]
     }
 ])
