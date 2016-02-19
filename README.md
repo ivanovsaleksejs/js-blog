@@ -3,9 +3,9 @@ JS Blog
 
 The blog engine written in JavaScript
 
-Check working version: <a href="http://aleksejs.net">aleksejs.net</a>
+Check working version: <a href="http://aleksejs.net" target="_blank">aleksejs.net</a>
 
-Blog post about this engine: <a href="http://aleksejs.net/post/how_this_blog_works">How this blog works</a>
+Blog post about this engine: <a href="http://aleksejs.net/post/how_this_blog_works" target="_blank">How this blog works</a>
 
 Back-end acts as REST-like server, sending only data. 
 All presentation logic is implemented in front-end via JavaScript.
