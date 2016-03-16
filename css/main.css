@@ -26,13 +26,10 @@ a {
     text-align: left;
     margin: 0 0 0 7em;
     padding: 0 2em;
-    border: 0.1em solid #123;
-    border-top: 0 none;
-    border-bottom: 0 none;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.7);
     width: 60em;
 }
 .header {
-    border-bottom: 1px solid;
     height: 5em;
     padding-top: 1.5em;
 }
